@@ -23,11 +23,20 @@ let todos = JSON.parse(localStorage.getItem("todos"))||[];
 
 function renderTodo(){
       todolist.innerHTML="";
-    for(let t of todos){
+    todos.forEach((t,index) =>{
       const li = document.createElement("li");
       li.textContent = t;
+      const delbtn = document.createElement("button");
+      delbtn.textContent="❌";
+      delbtn.style.marginLeft = "10px";
+      delbtn.addEventListener("click",() => {
+        todos.splice(index,1);
+        localStorage.setItem("todos",JSON.stringify(todos));
+        renderTodo();
+      });
+      li.appendChild(delbtn);
       todolist.appendChild(li);
-    }
+    });
 }
 renderTodo();
 addbtn.addEventListener("click",() => {
