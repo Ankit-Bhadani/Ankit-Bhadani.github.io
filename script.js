@@ -19,18 +19,23 @@ const addbtn = document.getElementById("addtodo")
 const addinput = document.getElementById("todoinput")
 const todolist = document.getElementById("todoList")
 
-let todos = [];
+let todos = JSON.parse(localStorage.getItem("todos"))||[];
 
-addbtn.addEventListener("click",() => {
-  const task = addinput.value;
-  if(task!==""){
-    todos.push(task);
-    todolist.innerHTML="";
+function renderTodo(){
+      todolist.innerHTML="";
     for(let t of todos){
       const li = document.createElement("li");
       li.textContent = t;
       todolist.appendChild(li);
     }
+}
+renderTodo();
+addbtn.addEventListener("click",() => {
+  const task = addinput.value;
+  if(task!==""){
+    todos.push(task);
+    localStorage.setItem("todos",JSON.stringify(todos));
+    renderTodo();
     addinput.value="";
   } else {
     alert("Please enter a task!");
