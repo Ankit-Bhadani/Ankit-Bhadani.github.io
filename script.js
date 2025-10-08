@@ -25,11 +25,23 @@ function renderTodo(){
       todolist.innerHTML="";
     todos.forEach((t,index) =>{
       const li = document.createElement("li");
-      li.textContent = t;
+      li.textContent = t.text;
+      li.style.cursor= "pointer";
+      if(t.done){
+        li.style.textDecoration="line-through";
+        li.style.color="#888";
+      }
+
+      li.addEventListener("click",()=> {
+        todos[index].done = !todos[index].done;
+        localStorage.setItem("todos",JSON.stringify(todos));
+        renderTodo();
+      })
       const delbtn = document.createElement("button");
       delbtn.textContent="❌";
       delbtn.style.marginLeft = "10px";
-      delbtn.addEventListener("click",() => {
+      delbtn.addEventListener("click",(e) => {
+        e.stopPropagation();
         todos.splice(index,1);
         localStorage.setItem("todos",JSON.stringify(todos));
         renderTodo();
@@ -40,9 +52,9 @@ function renderTodo(){
 }
 renderTodo();
 addbtn.addEventListener("click",() => {
-  const task = addinput.value;
+  const task = addinput.value.trim();
   if(task!==""){
-    todos.push(task);
+    todos.push({text:task,done:false});
     localStorage.setItem("todos",JSON.stringify(todos));
     renderTodo();
     addinput.value="";
