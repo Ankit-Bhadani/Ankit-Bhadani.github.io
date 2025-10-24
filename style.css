@@ -68,3 +68,14 @@ footer {
 button:hover {
     cursor: pointer;
 }
+#clearAll {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  padding: 2px 2px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#clearAll:hover {
+  background-color: #ff1744;
+}

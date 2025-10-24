@@ -62,7 +62,14 @@ addbtn.addEventListener("click",() => {
     alert("Please enter a task!");
   }
 });
-
+const clrbtn = document.getElementById("clearAll");
+clrbtn.addEventListener("click",() => {
+  if(confirm("Are you sure you want to clear all tasks?")){
+    todos=[];
+    localStorage.removeItem("todos");
+    renderTodo();
+  }
+});
 const toggle = document.getElementById("toggle")
 const selection = document.getElementById("hobbies")
 
