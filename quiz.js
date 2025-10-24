@@ -88,8 +88,7 @@ function loadQuestion() {
     result.textContent = "";
 }
 
-function checkAnswer(){
-    const selectedOption = event.target.textContent;
+function checkAnswer(selectedOption){
     const correctAnswer = questions[currentQuestion].answer;
     if (selectedOption === correctAnswer) {
         score++;
@@ -109,15 +108,6 @@ function checkAnswer(){
     }
 }
 
-function showfinal(){
-    
-    question.textContent = `Quiz Over! Your score: ${score}/${questions.length}`;
-    options.forEach(option => option.style.display = "none");
-    result.textContent = "";
-}   
 
-options.forEach(option => {
-    option.addEventListener("click", checkAnswer);
-});
 
 loadQuestion();
