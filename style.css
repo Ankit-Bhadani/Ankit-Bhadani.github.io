@@ -79,3 +79,20 @@ button:hover {
 #clearAll:hover {
   background-color: #ff1744;
 }
+#quiz {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 400px;
+}
+#answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+}
